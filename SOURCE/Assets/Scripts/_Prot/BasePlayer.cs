@@ -5,6 +5,10 @@ public class BasePlayer : MonoBehaviour
 {
 	private Rigidbody2D cachedRigidbody;
 
+	private bool isSwiping = false;
+
+	public float jumpForce = 7.0f;
+
 	public enum SIDE
 	{
 		LEFT,
@@ -20,17 +24,38 @@ public class BasePlayer : MonoBehaviour
 
 		EasyTouch.On_TouchDown += OnTouchDown;
 		EasyTouch.On_SimpleTap += OnSimpleTap;
+		EasyTouch.On_SwipeStart += OnSwipeStart;
+		EasyTouch.On_SwipeEnd += OnSwipeEnd;
 	}
 
 	void OnDisable()
 	{
 		EasyTouch.On_TouchDown -= OnTouchDown;
 		EasyTouch.On_SimpleTap -= OnSimpleTap;
+		EasyTouch.On_SwipeStart -= OnSwipeStart;
+		EasyTouch.On_SwipeEnd -= OnSwipeEnd;
 	}
 
-	public void Update()
+	void OnSwipeStart(Gesture pGesture)
 	{
+		if (playerSide == SIDE.LEFT) 
+		{
+			if (pGesture.position.x <= Screen.width / 2.0f) 
+			{
+				isSwiping = true;
+			}
+		}
+	}
 
+	void OnSwipeEnd(Gesture pGesture)
+	{
+		if (playerSide == SIDE.LEFT) 
+		{
+			if (pGesture.position.x <= Screen.width / 2.0f) 
+			{
+				isSwiping = false;
+			}
+		}
 	}
 
 	void OnTouchDown(Gesture pGesture)
@@ -61,6 +86,13 @@ public class BasePlayer : MonoBehaviour
 
 	void OnSimpleTap(Gesture pGesture)
 	{
-		//cachedRigidbody.AddForce (Vector2.up * 350.0f);
+		if (pGesture.position.x <= Screen.width / 2.0f && playerSide == SIDE.LEFT) 
+		{
+			cachedRigidbody.velocity += Vector2.up * jumpForce;
+		}
+		else if(pGesture.position.x > Screen.width / 2.0f && playerSide == SIDE.RIGHT)
+		{
+			cachedRigidbody.velocity += Vector2.up * jumpForce;
+		}
 	}
 }

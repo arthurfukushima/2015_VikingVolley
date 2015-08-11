@@ -16,7 +16,6 @@ public class BallScript : MonoBehaviour
 		{
 			Vector2 direction =  transform.position - pOther.transform.position ;
 			direction = direction.normalized;
-			//direction.y *= 1.0f;
 			cachedRigidbody.velocity = direction * 8.0f;
 		}
 	}
