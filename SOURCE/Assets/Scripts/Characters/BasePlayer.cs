@@ -55,15 +55,16 @@ public class BasePlayer : BaseCharacter
 
 	protected virtual void OnTouchDown(Gesture pGesture)
 	{
-		if(IsValidInput(pGesture.position))
-		{
-			RaycastHit2D hit2D = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (pGesture.position), Vector2.zero);
+		if (isSwiping) {
+			if (IsValidInput (pGesture.position)) {
+				RaycastHit2D hit2D = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (pGesture.position), Vector2.zero);
 
-			transform.position = Vector3.MoveTowards(transform.position, 
-				new Vector3 (hit2D.point.x, transform.position.y, transform.position.z), 
-				Time.deltaTime * 10.0f);
+				transform.position = Vector3.MoveTowards (transform.position, 
+					new Vector3 (hit2D.point.x, transform.position.y, transform.position.z), 
+					Time.deltaTime * 10.0f);
 
-			Move(new Vector3 (hit2D.point.x, transform.position.y, transform.position.z), movementSpeed);
+				Move (new Vector3 (hit2D.point.x, transform.position.y, transform.position.z), movementSpeed);
+			}
 		}
 	}
 
