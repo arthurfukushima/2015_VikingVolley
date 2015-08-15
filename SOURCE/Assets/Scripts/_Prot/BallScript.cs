@@ -30,4 +30,13 @@ public class BallScript : MonoBehaviour
 	{
 		cachedRigidbody.velocity = pDirection * pForce;
 	}
+
+
+    void OnCollisionEnter2D(Collision2D pCol)
+    {
+
+        // foda-se
+        if (pCol.gameObject.name == "Beach")
+            Prime31.MessageKit.MessageKit.post(StateMessages.GP_OnGameOver);
+    }
 }
