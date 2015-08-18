@@ -35,7 +35,7 @@ public class BallScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D pCol)
     {
 
-        // foda-se
+        // super-pro code
         if (pCol.gameObject.name == "Beach")
             Prime31.MessageKit.MessageKit.post(StateMessages.GP_OnGameOver);
     }
