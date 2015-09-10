@@ -53,6 +53,8 @@ public class UIMainMenu : BasePanel
         }
 
         MessageKit.post(StateMessages.UI_MainMenu_OnPlayClick);
+
+        UnityEngine.Analytics.Analytics.CustomEvent("PlayGame", null);
     }
     public void OnClickSettings()
     {
@@ -89,6 +91,11 @@ public class UIMainMenu : BasePanel
         {
             Debug.Log("Brow, fiz uma gambi aqui so p simular o menu. flw");
             m_pGAMBBall.Sleep();
+        }
+
+        if (UnityEngine.Advertisements.Advertisement.IsReady())
+        {
+            UnityEngine.Advertisements.Advertisement.Show();
         }
     }
 

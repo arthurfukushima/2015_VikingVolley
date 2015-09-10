@@ -198,9 +198,10 @@ namespace CoreUI
                 Vector2 vStartPos = new Vector2(
                     //RectTransform.anchoredPosition.x + (Screen.width / 2),
                     //RectTransform.anchoredPosition.y + Screen.height);
-                    AwakePosition.x + (Screen.width / 2),
-                    vParentPos.y + AwakePosition.y + (Screen.height));
-                Vector2 vFinishPos = new Vector2(AwakePosition.x, AwakePosition.y);
+                    AwakePosition.x,// + (Screen.width / 2),
+                    vParentPos.y + AwakePosition.y + (Screen.height)
+                    );
+                Vector2 vFinishPos = new Vector2(AwakePosition.x - (Screen.width / 2), AwakePosition.y - (Screen.height / 2));
                 RectTransform.position = vStartPos;
                 // do it
                 LeanTween.move(RectTransform, vFinishPos, TweeningDefaultTime)
