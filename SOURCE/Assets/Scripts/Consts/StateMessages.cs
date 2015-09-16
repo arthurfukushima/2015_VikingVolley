@@ -13,4 +13,9 @@ public static class StateMessages
     // > 4000 is gameplay messaes
     public const int GP_OnGameOver = 4001;
 
+    public const int GP_OnPowerOver = 4002;
+
+
+
+
 }
